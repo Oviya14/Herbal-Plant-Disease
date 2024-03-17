@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  * {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    color: #111;
+  }
+  html {
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: gainsboro;
+  }
+  @media (min-width: 48em) {
+    body {
+      height: 100vh;
+      display: flex;
+    }
+  }
+  a:hover {
+    color: #106213;
+  }
+  ::selection {
+    background-color: #106213;
+    color: white;
+  }
+  .container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1280px;
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-color: white;
+  }
+  @media (min-width: 48em) {
+    .container {
+      margin-top: auto;
+      margin-bottom: auto;
+      display: flex;
+    }
+  }
+  @media (min-width: 75em) {
+    .container {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  }
+  .left-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-flow: row wrap;
+  }
+  .left-container > .title {
+    flex: 1 100%;
+    margin: 70px 0 50px;
+  }
+  @media (min-width: 48em) {
+    .left-container > .title {
+      margin: 0;
+      flex: none;
+      transform: rotate(-90deg);
+      font-size: 30px;
+    }
+  }
+  @media (min-width: 48em) {
+    .left-container {
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+      max-width: 150px;
+    }
+  }
+  @media (min-width: 75em) {
+    .left-container {
+      max-width: 210px;
+    }
+  }
+  .logo {
+    font-size: 20px;
+  }
+  @media (min-width: 48em) {
+    .logo {
+      margin: 0;
+      font-size: 18px;
+    }
+  }
+  .social {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 30%;
+    padding: 0;
+    list-style: none;
+    display: flex;
+  }
+  .social > * + * {
+    margin-left: 20px;
+  }
+  .social > li > a {
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+  }
+  @media (min-width: 48em) {
+    .social > li > a {
+      font-size: 12px;
+    }
+  }
+  @media (min-width: 48em) {
+    .social {
+      margin-right: 0;
+      order: 1;
+    }
+  }
+  .center-container > img {
+    width: 100%;
+    max-width: 600px;
+    height: 100%;
+    object-fit: cover;
+  }
+  @media (min-width: 48em) {
+    .center-container {
+      margin-top: -30px;
+      margin-bottom: -30px;
+      display: flex;
+      align-items: flex-end;
+      background-color: gainsboro;
+    }
+  }
+  .right-container {
+    margin-top: 50px;
+  }
+  .right-container .header {
+    position: absolute;
+    top: 47px;
+    right: 20px;
+  }
+  .right-container .header > button {
+    background-color: transparent;
+    width: 30px;
+    height: 20px;
+    position: relative;
+    border: 0;
+    outline: 0;
+  }
+  @media (min-width: 48em) {
+    .right-container .header > button {
+      height: 15px;
+    }
+  }
+  @media (min-width: 48em) {
+    .right-container .header {
+      position: static;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 90px;
+    }
+  }
+  @media (min-width: 75em) {
+    .right-container .header {
+      padding-right: 50px;
+    }
+  }
+  .right-container .toggle > i::before, .right-container .toggle > i::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    margin: auto;
+    right: 0;
+    height: 2px;
+    background-color: #111;
+    width: 78%;
+    transition: 200ms;
+  }
+  .right-container .toggle > i::before {
+    top: 0;
+  }
+  .open .right-container .toggle > i::before {
+    transform: rotate(45deg);
+    bottom: 0;
+  }
+  .right-container .toggle > i::after {
+    bottom: 0;
+  }
+  .open .right-container .toggle > i::after {
+    transform: rotate(-45deg);
+    top: 0;
+  }
+  .right-container .search > i::before, .right-container .search > i::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    margin: auto;
+    right: 0;
+    border-color: #111;
+    border-width: 2px;
+    border-style: solid;
+  }
+  .right-container .search > i::before {
+    top: 0;
+    bottom: 0;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+  }
+  .right-container .search > i::after {
+    bottom: 1px;
+    border: 0;
+    width: 5px;
+    height: 2px;
+    background: black;
+    transform: rotate(45deg);
+    right: -19px;
+  }
+  @media (min-width: 48em) {
+    .right-container {
+      margin-top: 0;
+      padding-top: 0;
+      padding-right: 0;
+      padding-bottom: 0;
+      padding-left: 30px;
+    }
+  }
+  @media (min-width: 75em) {
+    .right-container {
+      padding-left: 120px;
+    }
+  }
+  .card-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: 300;
+    position: relative;
+  }
+  .card-title::before {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    background-color: lightgray;
+    bottom: -15px;
+  }
+  @media (min-width: 48em) {
+    .card-title {
+      font-size: 30px;
+      font-weight: 700;
+    }
+  }
+  .card-txt {
+    color: darkgray;
+    line-height: 1.8;
+    font-size: 14px;
+    margin: 30px 0;
+  }
+  .card-btn {
+    padding: 15px 40px;
+    font-weight: 700;
+    border: 1px solid gainsboro;
+    background-color: white;
+  }
+  .card-btn:hover {
+    border-color: #106213;
+    color: #106213;
+  }
+  @media (min-width: 75em) {
+    .card {
+      width: 70%;
+    }
+  }
+  .carousel {
+    display: flex;
+    margin-top: 70px;
+  }
+  .carousel > * + * {
+    margin-left: 20px;
+  }
+  .carousel > .item > img {
+    width: 100%;
+    max-width: 300px;
+  }
+  @media (min-width: 75em) {
+    .carousel {
+      margin-right: -30px;
+    }
+  }
+  .pagination {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .pagination .arrows > button {
+    width: 30px;
+    height: 15px;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    position: relative;
+  }
+  .pagination .arrows > button > i::before, .pagination .arrows > button > i::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+  }
+  .pagination .arrows > button > i::before {
+    width: 20px;
+    height: 2px;
+    background-color: black;
+  }
+  .pagination .arrows > button > i::after {
+    top: 1px;
+    width: 10px;
+    height: 10px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: transparent transparent black black;
+    transform: rotate(45deg);
+    bottom: 0;
+    margin: auto;
+  }
+  .pagination .arrows .arrow-left > i::before {
+    left: 0;
+  }
+  .pagination .arrows .arrow-left > i::after {
+    left: 0;
+    transform: rotate(45deg);
+  }
+  .pagination .arrows .arrow-right > i::before {
+    right: 0;
+  }
+  .pagination .arrows .arrow-right > i::after {
+    right: 0;
+    transform: rotate(-135deg);
+  }
+  .pagination .page {
+    position: relative;
+    font-size: 22px;
+    font-weight: 700;
+  }
+  .pagination .page::before {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 1px;
+    background-color: darkgray;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    left: calc(-100% - 15px);
+  }
+  @media (min-width: 75em) {
+    .pagination {
+      padding-right: 50px;
+    }
+  }
+  
+</style>
+<body>
+  <div class="container">
+    <div class="left-container">
+      <h1 class="logo">Nature</h1>
+      <ul class="social">
+        <li>
+          <a href="https://www.facebook.com/groups/2717878585196614/">Facebook</a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/medherbalists/?hl=en">Instagram</a>
+        </li>
+        <li>
+          <a href="https://twitter.com/MedHerbalists">Twitter</a>
+        </li>
+      </ul>
+      <h2 class="title">Greenhouse</h2>
+    </div>
+  
+    <div class="center-container">
+      <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1266&q=80" alt="">
+    </div>
+  
+    <div class="right-container">
+      <header class="header">
+        <!-- <button class="toggle"><i></i></button>
+        <button class="search"><i></i></button> -->
+      </header>
+      <div class="body">
+        <div class="card">
+          <h2 class="card-title">
+            Herbal Plant Disease
+          </h2>
+          <p class="card-txt">
+            A Deep Dive into Convolutional Neural Networks for Herbal Plant Disease Identification and Categorization
+          </p>
+          <button class="card-btn"><a href="{% url 'register' %}">Discover</a></button>
+        </div>
+        <div class="carousel">
+          <div class="item">
+            <img src="https://images.unsplash.com/photo-1487700160041-babef9c3cb55?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1335&q=80" alt="">
+          </div>
+          <div class="item">
+            <img src="https://images.unsplash.com/photo-1466781783364-36c955e42a7f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80" alt="">
+          </div>
+        </div>
+        <div class="pagination">
+          
+          <div class="page">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <a href="https://www.youtube.com/watch?v=-i2bGNL6bO8" target="_blank" title="Watch me speed code this" style="position: fixed; bottom: 10px; right: 10px"><img src="http://co0kie.github.io/codepen/youtube.png" alt=""></a>
+</body>
+</html>

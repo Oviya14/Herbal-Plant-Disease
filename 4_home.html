@@ -1,0 +1,141 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+ *{
+    margin: 0;
+    padding: 0;
+    font-family:sans-serif;
+}
+
+.banner {
+    width: 100%;
+    height: 150vh;
+    background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0, 0, 0, 0.75)),url("https://images.pexels.com/photos/15841905/pexels-photo-15841905/free-photo-of-close-up-photo-of-green-leaves.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    background-size: cover;
+    background-position: center;
+}
+
+.navbar {
+    width: auto;
+    height: 4.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #000000;
+}
+
+.logo{
+    width: 180px;
+    cursor: pointer;
+    height: 75px;
+}
+
+.navbar ul li{
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+    position: relative;
+}
+
+.navbar ul li a{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    text-transform: uppercase;
+}
+
+.navbar ul li::after{
+    content: '';
+    height: 3px;
+    width: 0%;
+    background: #35a501;
+    position:absolute;
+    left: 0;
+    bottom: -10px;
+    transition: 0.5s;
+}
+
+.navbar ul li:hover::after{
+    width: 100%;
+}
+
+.content{
+    width: 100%;
+    position: absolute;
+    top: 25%;
+    transform: translate(-0%);
+    text-align: center;
+    color: #fff;
+}
+.content h1 {
+    font-size: 50px;
+    margin-top: 80px;
+}
+
+.content p{
+    margin: 20px auto;
+    font-weight: 100;
+    line-height: 25px;
+}
+
+button {
+    width: 200px;
+    padding: 15px 0;
+    text-align: center;
+    margin: 20px 10px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: 2px solid #34b600;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+span {
+    background:#13a100;
+    height: 100%;
+    width: 0%;
+    border-radius: 25px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    transition: 0.5s;
+}
+
+button:hover span{
+    width: 100%;
+}   
+</style>
+<body>
+    <div class="banner">
+        <div class="navbar">
+            <img src="data:image/jpeg;base64,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" alt="img" class="logo">
+            <ul>
+                <li><a href="{% url 'index' %}">HOME</a></li>
+                
+                <li><a href="{% url 'problem_statement' %}">PROBLEM STATEMENTS</a></li>
+                <li><a href="{% url 'register' %}">LOGOUT</a></li>
+            </ul>
+        </div>
+        <div class="content">
+            <h1>To Analyse Herbal Plant Disease Identification and Categorization</h1>
+            <p>Using Convolutional Neural Networks</p>
+            <div>
+                <a href="{% url 'model' %}"><button type="button"><span></span>DEPLOYMENT</button></a>
+                <a href="{% url 'model_database' %}"><button type="button"><span></span>OUTPUT DATABASE</button></a>
+            </div>
+        </div>
+    </div> 
+</body>
+</html>
+
+

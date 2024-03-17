@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<style>
+    body{
+        background: url('https://images.pexels.com/photos/1276518/pexels-photo-1276518.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') no-repeat;
+        background-position: center;
+        background-size: cover;
+        
+        
+    }
+</style>
+<body>
+    <!-- <div class="text-gray-700 bg-cover bg-[url('https://images.pexels.com/photos/2255801/pexels-photo-2255801.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')]"> -->
+        <nav class="fixed bg-white w-full z-10 border-b border-solid border-gray-300">
+          <div class="container mx-auto px-6 py-2 flex justify-between items-center">
+            <a href="#" class="font-bold text-2xl lg:text-4xl">
+            HERBAL PLANT DISEASE
+            </a>
+            <div class="block md:hidden">
+              <button class="flex items-center px-3 py-2 border rounded text-gray-500 boder-gray-600 hiver:text-gray-800">
+                <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://wwww.w3.org/2000/svg">
+                  <title>Menu</title>
+                  <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+                </svg>
+              </button>
+            </div>
+            <div class="hidden md:block">
+              <ul class="inline-flex">
+                <li>
+                  <a href="{% url 'index' %}" class="px-4 font-bold hover:text-gray-800">
+                    Home
+                  </a>
+                </li>
+                {% comment %} <li>
+                  <a href="{% url 'problem_statement' %}" class="px-4 font-bold hover:text-gray-800">
+                    Problem statement
+                  </a>
+                </li> {% endcomment %}
+                <li>
+                  <a href="{% url 'model' %}" class="px-4 font-bold hover:text-gray-800">
+                    Model
+                  </a>
+                </li>
+                <li>
+                    <a href="{% url 'problem_statement' %}" class="px-4 font-bold hover:text-gray-800">
+                      Problem Statement
+                    </a>
+                </li>
+                <li>
+                  <a href="{% url 'model_database' %}" class="px-4 font-bold hover:text-gray-800">
+                    Model Database
+                  </a>
+                </li>
+                {% if user.is_authenticated %}
+                <li>  
+                    <a href="{% url 'logout' %}" class=" hover:text-gray-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+                        </svg>
+                    </a>
+                </li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </nav><br><br>
+        <nav>
+            {% if obj %}<br><br>
+        
+                    {% if predict == 'FOUND THIS IMAGE IS Aloevera_healthy' %}
+                    <div class="mt8 lg:-mx-6 lg:flex lg:items-center">
+                      <img class="object-cover w-full lg:mx-6 lg:w-1/2 rounded-xl h-72 lg:h-96" src="{{ obj.image.url }}" alt="">
+                      <div class="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 ">
+                          <p class="text-sm text-red-800 uppercase">Aloevera</p>
+                          <p class="block mt-4 text-2xl font-semibold text-gray-800  dark:text-white md:text-3xl">
+                            <b style="color: white;">FOUND THIS IMAGE IS ALOEVERA HEALTHY</b>
+                          </p><br>
+                      
+                          <p class="text-sm text-blue-500 uppercase">Description</p>
+                          <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                            A healthy Aloe vera plant exhibits vibrant, upright leaves with a firm texture and a rich green color. The plant's succulent leaves should be plump and well-hydrated, indicating optimal water storage. Healthy Aloe vera shows consistent growth with new leaves emerging from the center rosette. The absence of discoloration, spots, or wilting is characteristic of a thriving Aloe vera. Overall, a robust Aloe vera plant reflects a harmonious balance of sunlight, well-draining soil, and appropriate watering practices.     
+                          </p><br>
+                          
+                      </div>
+                    </div>
+  
+  
+
+                    {% elif predict == 'FOUND THIS IMAGE IS Aloevera_rot' %}
+                    <div class="mt8 lg:-mx-6 lg:flex lg:items-center">
+                      <img class="object-cover w-full lg:mx-6 lg:w-1/2 rounded-xl h-72 lg:h-96" src="{{ obj.image.url }}" alt="">
+                      <div class="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 ">
+                          <p class="text-sm text-red-800 uppercase">Aloevera Rot</p>
+                          <p class="block mt-4 text-2xl font-semibold text-gray-800  dark:text-white md:text-3xl">
+                              <b style="color: white;">FOUND THIS IMAGE IS ALOEVERA ROT AFFECTED</b>
+                          </p><br>
+            
+                          <p class="text-sm text-blue-500 uppercase">Prevention</p>
+                          <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                            Maintain well-draining soil to prevent water accumulation around the roots. Allow the soil to dry between watering sessions, ensuring proper ventilation. Avoid planting Aloe vera in containers without drainage holes.      
+                          </p><br>
+                          <p class="text-sm text-blue-500 uppercase">Precaution</p>
+                          <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                            Immediately remove any rot-affected leaves and inspect the roots for signs of decay. Adjust watering frequency and volume, especially during cooler seasons when the plant requires less moisture.Additional Precaution: Ensure adequate sunlight and avoid overcrowding to promote air circulation, reducing the risk of fungal infections. Use a balanced fertilizer sparingly, as over-fertilization can weaken the plant and make it more susceptible to rot.     
+                          </p><br>
+                          <p class="text-sm text-blue-500 uppercase">Causes</p>
+                          <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                            Aloe vera rot is primarily caused by overwatering, leading to waterlogged soil and root suffocation. Poor drainage and excessive moisture create favorable conditions for fungal and bacterial pathogens, contributing to rot.     
+                          </p><br>
+                      </div>
+                    </div>
+  
+                    {% elif predict == 'FOUND THIS IMAGE IS Aloevera_rust' %}  
+                    <div class="mt8 lg:-mx-6 lg:flex lg:items-center">
+                        <img class="object-cover w-full lg:mx-6 lg:w-1/2 rounded-xl h-72 lg:h-96" src="{{ obj.image.url }}" alt="">
+                        <div class="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 ">
+                            <p class="text-sm text-red-800 uppercase">Aloevera Rust</p>
+                            <p class="block mt-4 text-2xl font-semibold text-gray-800  dark:text-white md:text-3xl">
+                                <b style="color: white;">FOUND THIS IMAGE IS ALOEVERA RUST AFFECTED</b>
+                            </p><br>
+              
+                            <p class="text-sm text-blue-500 uppercase">Prevention</p>
+                            <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                                Maintain a well-ventilated environment by providing adequate spacing between plants. Water the soil directly and avoid wetting the foliage to minimize conditions conducive to rust development. Ensure proper sunlight exposure to inhibit fungal growth.      
+                            </p><br>
+                            <p class="text-sm text-blue-500 uppercase">Precaution</p>
+                          <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                            Promptly remove rust-affected leaves to prevent the spread of spores. Consider applying organic fungicides like neem oil to inhibit fungal growth. Regularly inspect plants for early signs of rust and treat them immediately. Additional Precaution: Quarantine new Aloe vera plants before introducing them to the garden to prevent potential rust contamination. Keep the growing area clean and free from debris to minimize the risk of fungal spore accumulation.    
+                          </p><br>
+                          <p class="text-sm text-blue-500 uppercase">Causes</p>
+                          <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                            Aloe vera rust is caused by a fungal infection, typically Puccinia aloes, favored by high humidity and inadequate air circulation. Spores spread through water or wind, leading to orange-brown rust-like spots on leaves.     
+                          </p><br>
+                        </div>
+                    </div>    
+                    {% elif predict == 'FOUND THIS IMAGE IS Basil_healthy' %}
+                    <div class="mt8 lg:-mx-6 lg:flex lg:items-center">
+                        <img class="object-cover w-full lg:mx-6 lg:w-1/2 rounded-xl h-72 lg:h-96" src="{{ obj.image.url }}" alt="">
+                        <div class="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 ">
+                            <p class="text-sm text-red-800 uppercase">Basil </p>
+                            <p class="block mt-4 text-2xl font-semibold text-gray-800  dark:text-white md:text-3xl">
+                                <b style="color: white;">FOUND THIS IMAGE IS BASIL HEALTHY</b>
+                            </p><br>
+              
+                            <p class="text-sm text-blue-500 uppercase">Description</p>
+                            <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                                A healthy Basil plant exhibits lush, vibrant green leaves with a strong aromatic fragrance. The leaves are smooth, well-formed, and show no signs of discoloration or yellowing. The plant has a bushy and compact growth habit, with sturdy stems supporting abundant foliage. Healthy Basil plants often have a glossy appearance, indicative of proper hydration and nutrient uptake. Robust and thriving, a well-maintained Basil plant is a testament to favorable growing conditions and diligent care.      
+                            </p><br>
+                            
+                        </div>
+                    </div>
+                    {% elif predict == 'FOUND THIS IMAGE IS Basil_Mildew_affected' %}
+                    <div class="mt8 lg:-mx-6 lg:flex lg:items-center">
+                        <img class="object-cover w-full lg:mx-6 lg:w-1/2 rounded-xl h-72 lg:h-96" src="{{ obj.image.url }}" alt="">
+                        <div class="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 ">
+                            <p class="text-sm text-red-800 uppercase">Basil Mildew </p>
+                            <p class="block mt-4 text-2xl font-semibold text-gray-800  dark:text-white md:text-3xl">
+                                <b style="color: white;">FOUND THIS IMAGE IS BASIL MILDEW AFFECTED</b>
+                            </p><br>
+              
+                            <p class="text-sm text-blue-500 uppercase">Prevention</p>
+                            <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                                Ensure well-draining soil, proper spacing, and adequate air circulation to reduce humidity around basil plants. Water at the base to keep foliage dry and avoid splashing water on leaves, preventing favorable conditions for mildew.      
+                            </p><br>
+                            <p class="text-sm text-blue-500 uppercase">Precaution</p>
+                          <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                            Regularly inspect basil for early signs of mildew, such as yellow spots or fuzzy growth on the undersides of leaves. Immediately remove affected leaves, and consider applying organic fungicides like neem oil preventatively.Additional Precaution: Plant disease-resistant basil varieties and rotate crops yearly to minimize the risk of persistent mildew. Quarantine new basil plants before introducing them to the garden to prevent the spread of potential infections.     
+                          </p><br>
+                          <p class="text-sm text-blue-500 uppercase">Causes</p>
+                          <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                            Basil mildew is caused by fungal infections like downy mildew (Peronospora belbahrii), thriving in humid conditions. Spores spread through water, air, or contaminated tools, affecting basil leaves with characteristic yellowing and mold-like growth.     
+                          </p><br>
+                        </div>
+                    </div>
+                    {% elif predict == 'FOUND THIS IMAGE IS Basil_Wilted_affected' %}
+                    <div class="mt8 lg:-mx-6 lg:flex lg:items-center">
+                        <img class="object-cover w-full lg:mx-6 lg:w-1/2 rounded-xl h-72 lg:h-96" src="{{ obj.image.url }}" alt="">
+                        <div class="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 ">
+                            <p class="text-sm text-red-800 uppercase">Basil Wilted </p>
+                            <p class="block mt-4 text-2xl font-semibold text-gray-800  dark:text-white md:text-3xl">
+                                <b style="color: white;">FOUND THIS IMAGE IS BASIL WILTED AFFECTED</b>
+                            </p><br>
+              
+                            <p class="text-sm text-blue-500 uppercase">Prevention</p>
+                            <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                                Choose well-draining soil and practice crop rotation to reduce the buildup of soil-borne pathogens. Avoid overwatering, as damp conditions can favor fungal growth. Use disease-resistant basil varieties to minimize susceptibility.      
+                            </p><br>
+                            <p class="text-sm text-blue-500 uppercase">Precaution</p>
+                          <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                            Monitor basil plants for early signs of wilting, yellowing, or stunted growth. Remove and dispose of infected plants promptly to prevent the spread of the pathogens. Sterilize gardening tools between uses to avoid cross-contamination.Additional Precaution: Provide proper spacing between basil plants to ensure good air circulation, reducing the likelihood of fungal infections. Consider applying organic amendments, like compost, to promote soil health and microbial balance, preventing wilt pathogens from thriving.    
+                          </p><br>
+                          <p class="text-sm text-blue-500 uppercase">Causes</p>
+                          <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                            Basil wilt is often caused by soil-borne pathogens like Fusarium or Verticillium fungi, leading to the wilting and yellowing of basil plants. Contaminated soil, infected tools, or plant debris contribute to the spread of these pathogens.     
+                          </p><br>
+                        </div>
+                    </div>
+                    {% elif predict == 'FOUND THIS IMAGE IS Cardamom_Healthy' %}
+                    <div class="mt8 lg:-mx-6 lg:flex lg:items-center">
+                        <img class="object-cover w-full lg:mx-6 lg:w-1/2 rounded-xl h-72 lg:h-96" src="{{ obj.image.url }}" alt="">
+                        <div class="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 ">
+                            <p class="text-sm text-red-800 uppercase">Cardamom </p>
+                            <p class="block mt-4 text-2xl font-semibold text-gray-800  dark:text-white md:text-3xl">
+                                <b style="color: white;">FOUND THIS IMAGE IS CARDAMOM HEALTHY</b>
+                            </p><br>
+              
+                            <p class="text-sm text-blue-500 uppercase">Description</p>
+                            <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                                A healthy Cardamom plant boasts lush, dark green foliage with well-formed leaves arranged in an orderly fashion around the stems. The plant's stems are sturdy and upright, supporting a symmetrical growth pattern. Healthy Cardamom plants exhibit an overall vibrancy, with no signs of discoloration, yellowing, or wilting. The plant often displays a vigorous appearance, showcasing robust shoots and a compact structure. Thriving in optimal conditions, a healthy Cardamom plant is a testament to well-balanced soil, proper irrigation, and suitable environmental factors.      
+                            </p><br>
+                            
+                        </div>
+                    </div>
+                    {% elif predict == 'FOUND THIS IMAGE IS Cardamom_LeafBlight_affected' %}
+                    <div class="mt8 lg:-mx-6 lg:flex lg:items-center">
+                        <img class="object-cover w-full lg:mx-6 lg:w-1/2 rounded-xl h-72 lg:h-96" src="{{ obj.image.url }}" alt="">
+                        <div class="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 ">
+                            <p class="text-sm text-red-800 uppercase">Cardamom Leaf Blight </p>
+                            <p class="block mt-4 text-2xl font-semibold text-gray-800  dark:text-white md:text-3xl">
+                                <b style="color: white;">FOUND THIS IMAGE IS CARDAMOM LEAF BLIGHT AFFECTED</b>
+                            </p><br>
+              
+                            <p class="text-sm text-blue-500 uppercase">Prevention</p>
+                            <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                                Practice strict sanitation measures, including cleaning and disinfecting tools, and using disease-free seeds. Ensure proper spacing and pruning for optimal air circulation, reducing humidity. Apply copper-based fungicides preventatively.      
+                            </p><br>
+                            <p class="text-sm text-blue-500 uppercase">Precaution</p>
+                          <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                            Regularly inspect cardamom plants for early signs of leaf blight, such as brown lesions and leaf discoloration. Immediately remove and destroy infected plant parts to prevent further spread. Quarantine new plants before introduction to the plantation.Additional Precaution: Enhance plant vigor through balanced fertilization and watering practices, promoting resistance to leaf blight. Rotate crops and avoid continuous monoculture to disrupt the disease cycle and minimize the risk of recurrent infections.     
+                          </p><br>
+                          <p class="text-sm text-blue-500 uppercase">Causes</p>
+                          <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                            Cardamom leaf blight is caused by the fungus Pestalotiopsis spp., spreading through infected seeds or contaminated tools. High humidity, poor air circulation, and dense canopy contribute to its rapid spread, leading to brown lesions on cardamom leaves.     
+                          </p><br>
+                        </div>
+                    </div>
+                    {% elif predict == 'FOUND THIS IMAGE IS Cardamom_LeafSpot_affected' %}
+                    <div class="mt8 lg:-mx-6 lg:flex lg:items-center">
+                        <img class="object-cover w-full lg:mx-6 lg:w-1/2 rounded-xl h-72 lg:h-96" src="{{ obj.image.url }}" alt="">
+                        <div class="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 ">
+                            <p class="text-sm text-red-800 uppercase">Cardamom Leaf Spot </p>
+                            <p class="block mt-4 text-2xl font-semibold text-gray-800  dark:text-white md:text-3xl">
+                                <b style="color: white;">FOUND THIS IMAGE IS CARDAMOM LEAF SPOT AFFECTED</b>
+                            </p><br>
+              
+                            <p class="text-sm text-blue-500 uppercase">Prevention</p>
+                            <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                                Ensure well-draining soil and proper spacing for good air circulation to reduce humidity. Water at the base of plants to avoid wetting the foliage. Apply preventive copper-based fungicides during favorable conditions.      
+                            </p><br>
+                            <p class="text-sm text-blue-500 uppercase">Precaution</p>
+                          <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                            Regularly inspect cardamom plants for early signs of leaf spot, including small dark lesions on leaves. Promptly remove and destroy infected leaves to prevent further spread. Practice crop rotation to disrupt the disease cycle.Additional Precaution: Use disease-resistant cardamom varieties and maintain a clean plantation by removing plant debris. Avoid overhead irrigation to minimize leaf wetness periods, and consider applying organic mulch to prevent soil splashing onto leaves.     
+                          </p><br>
+                          <p class="text-sm text-blue-500 uppercase">Causes</p>
+                          <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                            Cardamom leaf spot is caused by the fungus Colletotrichum gloeosporioides, typically spread through water, wind, or contaminated tools. Dense foliage, high humidity, and prolonged leaf wetness create favorable conditions for infection, resulting in dark spots on cardamom leaves.     
+                          </p><br>
+                        </div>
+                    </div>
+                    {% elif predict == 'FOUND THIS IMAGE IS cassava_Bacterial Blight_affected' %}
+                    <div class="mt8 lg:-mx-6 lg:flex lg:items-center">
+                        <img class="object-cover w-full lg:mx-6 lg:w-1/2 rounded-xl h-72 lg:h-96" src="{{ obj.image.url }}" alt="">
+                        <div class="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 ">
+                            <p class="text-sm text-red-800 uppercase">Cassava Bacterial Blight </p>
+                            <p class="block mt-4 text-2xl font-semibold text-gray-800  dark:text-white md:text-3xl">
+                                <b style="color: white;">FOUND THIS IMAGE IS CASSAVA BACTERIAL BLIGHT AFFECTED</b>
+                            </p><br>
+              
+                            <p class="text-sm text-blue-500 uppercase">Prevention</p>
+                            <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                                Use disease-free planting material and practice strict sanitation, including tool disinfection. Maintain proper spacing between cassava plants to enhance air circulation, reducing humidity. Plant resistant varieties to minimize susceptibility.      
+                            </p><br>
+                            <p class="text-sm text-blue-500 uppercase">Precaution</p>
+                          <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                            Regularly inspect cassava plants for symptoms such as leaf lesions and wilting. Remove and destroy infected plant parts, and avoid working in wet fields to prevent bacterial dissemination. Apply copper-based sprays preventatively.Additional Precaution: Rotate cassava crops to disrupt the bacterial life cycle. Implement early-season pruning to remove infected tips and minimize bacterial inoculum. Educate farmers on best practices for disease management to enhance overall plantation health.     
+                          </p><br>
+                          <p class="text-sm text-blue-500 uppercase">Causes</p>
+                          <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                            Cassava bacterial blight is caused by the bacterium Xanthomonas axonopodis, primarily transmitted through infected planting material, contaminated tools, or rain splash. Warm and humid conditions facilitate bacterial spread, resulting in angular leaf lesions and stem cankers.     
+                          </p><br>
+                        </div>
+                    </div>
+                    {% elif predict == 'FOUND THIS IMAGE IS cassava_Healthy' %}
+                    <div class="mt8 lg:-mx-6 lg:flex lg:items-center">
+                        <img class="object-cover w-full lg:mx-6 lg:w-1/2 rounded-xl h-72 lg:h-96" src="{{ obj.image.url }}" alt="">
+                        <div class="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 ">
+                            <p class="text-sm text-red-800 uppercase">Cassava </p>
+                            <p class="block mt-4 text-2xl font-semibold text-gray-800  dark:text-white md:text-3xl">
+                                <b style="color: white;">FOUND THIS IMAGE IS CASSAVA HEALTHY</b>
+                            </p><br>
+              
+                            <p class="text-sm text-blue-500 uppercase">Description</p>
+                            <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                                A healthy Cassava plant presents a thriving appearance with well-established stems and lush, green leaves. The leaves are broad, displaying a uniform dark green coloration without any signs of yellowing or discoloration. The plant has a robust and erect growth habit, indicative of sufficient water and nutrient uptake. Healthy Cassava often exhibits a dense canopy of foliage, contributing to an overall vigorous and flourishing appearance. Successful cultivation practices, including well-draining soil and appropriate care, result in a vibrant and thriving Cassava plant.      
+                            </p><br>
+                            
+                        </div>
+                    </div>
+                    {% elif predict == 'FOUND THIS IMAGE IS citrus_affected' %}
+                    <div class="mt8 lg:-mx-6 lg:flex lg:items-center">
+                        <img class="object-cover w-full lg:mx-6 lg:w-1/2 rounded-xl h-72 lg:h-96" src="{{ obj.image.url }}" alt="">
+                        <div class="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 ">
+                            <p class="text-sm text-red-800 uppercase">Citrus Affected</p>
+                            <p class="block mt-4 text-2xl font-semibold text-gray-800  dark:text-white md:text-3xl">
+                                <b style="color: white;">FOUND THIS IMAGE IS CITRUS AFFECTED</b>
+                            </p><br>
+              
+                            <p class="text-sm text-blue-500 uppercase">Prevention</p>
+                            <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                                Implement strict quarantine measures for new citrus plants, use disease-resistant varieties, and ensure proper sanitation practices, including the disinfection of tools. Monitor and control insect vectors to prevent the spread of diseases.      
+                            </p><br>
+                            <p class="text-sm text-blue-500 uppercase">Precaution</p>
+                          <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                            Regularly inspect citrus trees for symptoms like leaf discoloration, lesions, or abnormal growth. Promptly remove and destroy infected plant parts to prevent further spread. Apply appropriate fungicides, bactericides, or insecticides preventatively.Additional Precaution: Promote overall plant health through proper watering, fertilization, and pruning practices. Foster biodiversity in the orchard to encourage natural predators of pests. Stay informed about regional disease outbreaks and implement timely control measures.     
+                          </p><br>
+                          <p class="text-sm text-blue-500 uppercase">Causes</p>
+                          <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                            Citrus diseases can result from various factors, including fungal pathogens (such as citrus canker and greening), bacteria, viruses, and pests. These issues often spread through contaminated tools, infected plant material, or insect vectors.     
+                          </p><br>
+                        </div>
+                    </div>
+                    {% elif predict == 'FOUND THIS IMAGE IS citrus_healthy' %}
+                    <div class="mt8 lg:-mx-6 lg:flex lg:items-center">
+                        <img class="object-cover w-full lg:mx-6 lg:w-1/2 rounded-xl h-72 lg:h-96" src="{{ obj.image.url }}" alt="">
+                        <div class="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 ">
+                            <p class="text-sm text-red-800 uppercase">Citrus Healthy</p>
+                            <p class="block mt-4 text-2xl font-semibold text-gray-800  dark:text-white md:text-3xl">
+                                <b style="color: white;">FOUND THIS IMAGE IS CITRUS HEALTHY</b>
+                            </p><br>
+              
+                            <p class="text-sm text-blue-500 uppercase">Description</p>
+                            <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                                A healthy citrus plant showcases vibrant, glossy green leaves and a balanced canopy with no signs of discoloration or abnormal growth. The branches are sturdy, supporting an abundance of well-formed fruits. The foliage exudes a characteristic citrus fragrance, indicative of the plant's vitality. Healthy citrus plants often have a symmetrical and lush appearance, reflecting optimal conditions for growth. Overall, a thriving citrus plant is a testament to proper nutrition, adequate watering, and a well-maintained environment.      
+                            </p><br>
+                            
+                        </div>
+                    </div>
+                    {% elif predict == 'FOUND THIS IMAGE IS Mentha _healthy' %}
+                    <div class="mt8 lg:-mx-6 lg:flex lg:items-center">
+                        <img class="object-cover w-full lg:mx-6 lg:w-1/2 rounded-xl h-72 lg:h-96" src="{{ obj.image.url }}" alt="">
+                        <div class="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 ">
+                            <p class="text-sm text-red-800 uppercase">Mentha </p>
+                            <p class="block mt-4 text-2xl font-semibold text-gray-800  dark:text-white md:text-3xl">
+                                <b style="color: white;">FOUND THIS IMAGE IS MENTHA HEALTHY</b>
+                            </p><br>
+              
+                            <p class="text-sm text-blue-500 uppercase">Description</p>
+                            <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                                A healthy Mentha plant displays a vigorous and bushy growth with dense clusters of aromatic leaves. The leaves are vibrant green, showing no signs of discoloration or wilting. The plant has a robust aroma, indicative of its essential oil content. Sturdy stems support the well-formed leaves, contributing to the overall compact and lush appearance. A thriving Mentha plant reflects optimal growing conditions, including well-draining soil, adequate sunlight, and consistent moisture.      
+                            </p><br>
+                            
+                        </div>
+                    </div>
+                    {% elif predict == 'FOUND THIS IMAGE IS Mentha_Dried_affected' %}
+                    <div class="mt8 lg:-mx-6 lg:flex lg:items-center">
+                        <img class="object-cover w-full lg:mx-6 lg:w-1/2 rounded-xl h-72 lg:h-96" src="{{ obj.image.url }}" alt="">
+                        <div class="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 ">
+                            <p class="text-sm text-red-800 uppercase">Mentha Dried </p>
+                            <p class="block mt-4 text-2xl font-semibold text-gray-800  dark:text-white md:text-3xl">
+                                <b style="color: white;">FOUND THIS IMAGE IS MENTHA DRIED AFFECTED</b>
+                            </p><br>
+              
+                            <p class="text-sm text-blue-500 uppercase">Prevention</p>
+                            <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                                Ensure proper irrigation, providing consistent moisture without waterlogging. Protect Mentha plants from excessive sunlight by providing shade during peak hours. Regularly inspect for signs of pests and diseases, and promptly address any issues.      
+                            </p><br>
+                            <p class="text-sm text-blue-500 uppercase">Precaution</p>
+                          <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                            Monitor soil moisture levels and adjust watering accordingly to prevent drought stress. Apply organic mulch to retain soil moisture and control temperature. Employ natural pest control methods and promptly treat any fungal infections to safeguard Mentha health.Additional Precaution: Maintain balanced nutrient levels through regular fertilization to prevent deficiencies that may contribute to drying. Rotate crops and practice good sanitation to reduce the risk of disease recurrence.     
+                          </p><br>
+                          <p class="text-sm text-blue-500 uppercase">Causes</p>
+                          <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                            Drying in Mentha plants can result from various factors, including inadequate water supply, extended exposure to intense sunlight, or nutrient deficiencies. Pests and diseases, such as fungal infections, can also contribute to the drying of Mentha leaves.     
+                          </p><br>
+                        </div>
+                    </div>
+                    {% elif predict == 'FOUND THIS IMAGE IS Mentha_Spoiled_affected' %}
+                    <div class="mt8 lg:-mx-6 lg:flex lg:items-center">
+                        <img class="object-cover w-full lg:mx-6 lg:w-1/2 rounded-xl h-72 lg:h-96" src="{{ obj.image.url }}" alt="">
+                        <div class="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 ">
+                            <p class="text-sm text-red-800 uppercase">Mentha Spoiled </p>
+                            <p class="block mt-4 text-2xl font-semibold text-gray-800  dark:text-white md:text-3xl">
+                                <b style="color: white;">FOUND THIS IMAGE IS MENTHA SPOILED AFFECTED</b>
+                            </p><br>
+              
+                            <p class="text-sm text-blue-500 uppercase">Prevention</p>
+                            <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                                Ensure well-draining soil, avoid overwatering, and maintain proper spacing for adequate air circulation. Use disease-free planting material and practice crop rotation to minimize the risk of soil-borne pathogens.      
+                            </p><br>
+                            <p class="text-sm text-blue-500 uppercase">Precaution</p>
+                          <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                            Regularly inspect Mentha plants for signs of wilting, discoloration, or unusual growth. Remove and dispose of spoiled or infected plant parts promptly to prevent the spread of diseases. Quarantine new plants before introducing them to the cultivation area.Additional Precaution: Apply organic fungicides preventatively, especially during periods of high humidity. Implement good sanitation practices, including cleaning tools and equipment, to reduce the likelihood of pathogen transmission.     
+                          </p><br>
+                          <p class="text-sm text-blue-500 uppercase">Causes</p>
+                          <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                            Spoiling of Mentha plants can occur due to various factors, including overwatering, poor soil drainage, and fungal infections such as damping-off or root rot. Contaminated water sources and the presence of pathogens in the soil can also contribute to spoilage.     
+                          </p><br>
+                        </div>
+                    </div>
+
+
+
+
+
+                    
+
+{% endif %}
+{% endif %}
+
+</body>
+</html>
